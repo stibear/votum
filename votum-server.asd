@@ -12,11 +12,20 @@
   :version "0.1"
   :author "Wataru NAKANISHI (stibear)"
   :license "MIT"
-  :depends-on (:cl-csv
+  :depends-on (:clack
+	       :lack
                :caveman2
-	       ;; :djula
+	       :envy
+	       :cl-ppcre
+	       :uiop
+	       :cl-syntax-annot
+	       :djula
 	       :votum)
   :components ((:module "src/server"
+		:serial t
                 :components
-                ((:file "server"))))
+                ((:file "config")
+		 (:file "view")
+		 (:file "web")
+		 (:file "main"))))
   :in-order-to ((test-op (test-op votum-server-test))))

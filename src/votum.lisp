@@ -5,6 +5,7 @@
         :votum.voting-system)
   (:export :borda-to-majority
 	   :majority-rule
-	   :borda-count))
+	   :borda-count
+	   :schulze-method))
 (in-package :votum)
 

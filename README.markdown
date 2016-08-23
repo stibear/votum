@@ -1,6 +1,6 @@
 # Votum
 
-This provides voting forms with variable voting systems
+This provides voting forms with variable voting systems.
 
 ## Usage
 

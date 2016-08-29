@@ -11,6 +11,8 @@
                 :compile-template*
                 :render-template*
                 :*djula-execute-package*)
+  (:import-from :datafly
+		:encode-json)
   (:export :render
            :render-json))
 (in-package :votum-server.view)
@@ -27,6 +29,10 @@
     (apply #'render-template*
            template nil
            env)))
+
+(defun render-json (object)
+  (setf (getf (response-headers *response*) :content-type) "application/json")
+  (encode-json object))
 
 
 ;;

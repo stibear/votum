@@ -1,8 +1,3 @@
-#|
-  This file is a part of votum project.
-  Copyright (c) 2016 Wataru NAKANISHI (stibear)
-|#
-
 (in-package :cl-user)
 (defpackage votum-server-asd
   (:use :cl :asdf))
@@ -20,11 +15,17 @@
 	       :uiop
 	       :cl-syntax-annot
 	       :djula
+	       :datafly
+	       :sxql
+	       :iterate
+	       :cl-csv
 	       :votum)
   :components ((:module "src/server"
 		:serial t
                 :components
                 ((:file "config")
+		 (:file "db")
+		 (:file "model")
 		 (:file "view")
 		 (:file "web")
 		 (:file "main"))))

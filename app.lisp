@@ -18,7 +18,7 @@
 (builder
  (:static
   :path (lambda (path)
-          (if (ppcre:scan "^(?:/images/|/css/|/js/|/robot\\.txt$|/favicon\\.ico$)" path)
+          (if (ppcre:scan "^(?:/images/|/css/|/js/|/robot\\.txt$|/favicon\\.ico$|/fonts/)" path)
               path
               nil))
   :root *static-directory*)
@@ -29,4 +29,11 @@
      `(:backtrace
        :output ,(getf (config) :error-log))
      nil)
+ :session
+ (if (productionp)
+     nil
+     (lambda (app)
+       (lambda (env)
+	 (let ((datafly:*trace-sql* t))
+	   (funcall app env)))))
   *web*)

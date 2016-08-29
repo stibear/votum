@@ -1,0 +1,58 @@
+{% extends "layouts/default.html" %}
+{% block head %}
+<script src="js/script.js"></script>
+{% endblock %}
+{% block navbar %}
+<ul class="nav navbar-nav">
+  <li><a href="/">Home</a></li>
+  <li class="active"><a href="#">Create</a></li>
+  <li><a href="list">List</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Create a new voting form</h1>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" placeholder="Anonymous">
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" required="required"
+	   pattern="^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,100}$"
+	   placeholder="^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,100}$">
+  </div>
+  <div class="form-group">
+    <label for="subject">Subject:</label>
+    <input type="text" class="form-control" id="subject" required="required">
+  </div>
+  <div class="form-group">
+    <label for="explanation">Explanation:</label>
+    <textarea class="form-control" id="explanation" placeholder="" required="required"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="voting-system">Voting system:</label>
+    <select class="form-control" id="voting-system">
+      {% for system in voting-systems %}
+      <option value="{{ system|lisp: second }}">{{ system|first }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="candidates">Candidates:</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="candidate" placeholder="Candidate">
+      <span class="input-group-btn">
+	<button type="button" class="btn btn-success" id="add-button" aria-label="Left Align">
+	  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+      </span>
+    </div>
+    <ul class="list-group" id="candidates">
+    </ul>
+  </div>
+  <button type="button" class="btn btn-primary" id="submit-button">Submit</button>
+</form>
+{% endblock %}

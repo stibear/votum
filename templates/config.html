@@ -1,0 +1,29 @@
+{% extends "layouts/default.html" %}
+{% block head %}
+{% endblock %}
+{% block navbar %}
+<ul class="nav navbar-nav">
+  <li><a href="/">Home</a></li>
+  <li><a href="/new">Create</a></li>
+  <li class="active"><a href="/list">List</a></li>
+</ul>
+<p class="navbar-text navbar-right"><a href="#" class="nav-link">Config</a></p>
+{% endblock %}
+{% block content %}
+<ol class="breadcrumb">
+  <li><a href="/list">Form list</a></li>
+  <li><a href="/list/{{ form-id }}">{{ form-subject }}</a></li>
+  <li class="active">Config</li>
+</ol>
+<div class="page-header">
+  <h1>Config</h1>
+</div>
+<form class="form-horizontal" action="/close" method="post">
+  <div class="form-group">
+    <label class="col-sm-12 lead">Do you CLOSE this voting form?</label>
+    <div class="col-sm-offset-5 col-sm-2">
+      <button type="submit" class="btn btn-danger btn-block">C L O S E</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layouts/default.html" %}
+{% block head %}
+{% endblock %}
+{% block navbar %}
+<ul class="nav navbar-nav">
+  <li><a href="/">Home</a></li>
+  <li><a href="/new">Create</a></li>
+  <li class="active"><a href="#">List</a></li>
+</ul>
+<p class="navbar-text navbar-right"><a href="/signin" class="nav-link">Config</a></p>
+{% endblock %}
+{% block content %}
+<ol class="breadcrumb">
+  <li><a href="/list">Form list</a></li>
+  <li class="active">{{ form-content.subject }}</li>
+</ol>
+<div class="page-header">
+  <h1>Result of {{ form-content.subject }}</h1>
+  <p class="lead">{{ form-content.explanation }}</p>
+</div>
+{% if multi-win %}
+<h2>Winners: {% for w in winner %}{{ w }}{% if not forloop.last %} & {% endif %}{% endfor %}</h2>
+{% else %}
+<h2>Winners: {{ winner }}</h2>
+{% endif %}
+<h3>Details</h3>
+<table class="table table-striped">
+  <thead><tr><th>Rank</th><th>Candidate</th><th>Score</th></tr></thead>
+  <tbody>
+  {% for csr in cand-score-rank %}
+  <tr><th>{{ csr|lisp:third }}</th><td>{{ csr|lisp:first }}</td><td>{{ csr|lisp:second }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

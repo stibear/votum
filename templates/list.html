@@ -1,0 +1,31 @@
+{% extends "layouts/default.html" %}
+{% block head %}
+<style>
+p.list-group-item-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%
+}
+</style>
+{% endblock %}
+{% block navbar %}
+<ul class="nav navbar-nav">
+  <li><a href="/">Home</a></li>
+  <li><a href="new">Create</a></li>
+  <li class="active"><a href="#">List</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Form list</h1>
+</div>
+<div class="list-group">
+  {% for form in forms %}
+  <a class="list-group-item" href="/list/{{ form.id }}">
+    <h3 class="list-group-item-heading">{{ form.subject }}</h4>
+    <p class="list-group-item-text">{{ form.explanation }}</p>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

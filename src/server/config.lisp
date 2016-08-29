@@ -8,6 +8,7 @@
            :*application-root*
            :*static-directory*
            :*template-directory*
+	   :*voting-systems*
            :appenv
 	   :developmentp
            :productionp))
@@ -19,14 +20,18 @@
 (defparameter *static-directory* (merge-pathnames #P"static/" *application-root*))
 (defparameter *template-directory* (merge-pathnames #P"templates/" *application-root*))
 
+(defparameter *voting-systems* '(("Majority Rule" :majority-rule :radio)
+				 ("Borda Count" :borda-count :select)
+				 ("Schulze Method" :schulze-method :input)))
+
 (defconfig :common
-  '())
+  '(:databases ((:maindb :mysql :database-name "votum_server" :username "votum_server"))))
 
 (defconfig |development|
   '())
 
 (defconfig |production|
-  '())
+  `(:error-log ,(merge-pathnames #P"log/error.log" *application-root*)))
 
 (defconfig |test|
   '())

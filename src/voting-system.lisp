@@ -36,11 +36,20 @@
 ;; Voting Systems
 (defun majority-rule (candidates vote-list)
   "CANDIDATES---a list.
-VATE-LIST---a list of numbers of votes obtained
+VOTE-LIST---a list of numbers of votes obtained
 Return values---the winner of candidates & his number of votes obtained"
-  (let ((nth (max-position vote-list)))
-    (values (nth nth candidates)
-	    (nth nth vote-list))))
+  (let* ((nth (max-position vote-list))
+	 (max (apply #'max vote-list)))
+    (if (= 1 (count max vote-list))
+	(values (nth nth candidates)
+		(nth nth vote-list))
+	(multiple-value-bind (c v) (majority-rule (nthcdr (1+ nth) candidates)
+						  (nthcdr (1+ nth) vote-list))
+	  (if (listp c)
+	      (values (cons (nth nth candidates) c)
+		      (cons (nth nth vote-list) v))
+	      (values (cons (nth nth candidates) (list c))
+		      (cons (nth nth vote-list) (list v))))))))
 
 (defun borda-count (candidates rank-lists)
   "CANDIDATES---a list.
